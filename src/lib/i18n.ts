@@ -67,6 +67,8 @@ export const translations = {
   },
 };
 
+export type TFunction = (key: keyof typeof translations.en) => string;
+
 export function useTranslation(lang: Language) {
   return {
     t: (key: keyof typeof translations.en) => translations[lang][key],

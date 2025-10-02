@@ -395,7 +395,14 @@ export function generatePreviewHTML(
 ): string {
   let html = templates[template].generate(data);
 
+  // Remove all @media (prefers-color-scheme: dark) rules to prevent browser dark mode from affecting preview
+  html = html.replace(
+    /@media \(prefers-color-scheme: dark\) \{[^}]*\}/g,
+    ''
+  );
+
   if (darkMode) {
+    // Apply dark mode colors
     html = html.replace(
       new RegExp(`color: ${data.textColor}`, 'g'),
       `color: ${data.textColorDark}`
@@ -416,25 +423,32 @@ export function generatePreviewHTML(
       `linear-gradient(90deg, ${data.linkColorDark} 0%, transparent 100%)`
     );
 
+    // Hide light images (remove all spacing), show dark images with proper margin
     html = html.replace(
-      /class="light-img logo-shadow"/g,
-      'class="light-img logo-shadow" style="display:none !important;"'
+      /<img class="light-img" src="[^"]*" alt="[^"]*" width="\d+" style="display: block; margin-bottom: 12px; border: 0; max-width: \d+px; height: auto;">/g,
+      (match) => match.replace(/style="[^"]*"/, 'style="display:none !important; margin:0 !important; padding:0 !important; height:0 !important;"')
     );
     html = html.replace(
-      /class="light-img"/g,
-      'class="light-img" style="display:none !important;"'
+      /class="dark-img" style="display: none; overflow: hidden; max-height: 0px; margin-bottom: 12px;"/g,
+      'class="dark-img" style="display: block; overflow: visible; max-height: none; margin-bottom: 12px;"'
     );
     html = html.replace(
-      /style="display: none; overflow: hidden; max-height: 0px;"/g,
-      'style="display: block; overflow: visible; max-height: none;"'
+      /class="dark-img" style="display: none; overflow: hidden; max-height: 0px;"/g,
+      'class="dark-img" style="display: block; overflow: visible; max-height: none;"'
+    );
+  } else {
+    // Force light mode - show light images, completely hide dark image containers
+    html = html.replace(
+      /<img class="light-img" src="[^"]*" alt="[^"]*" width="\d+" style="display: block; margin-bottom: 12px; border: 0; max-width: \d+px; height: auto;">/g,
+      (match) => match.replace(/style="[^"]*"/, 'style="display: block !important; margin-bottom: 12px; border: 0; max-width: 90px; height: auto;"')
     );
     html = html.replace(
-      /style="display: none; overflow: hidden; max-height: 0px; margin-bottom: 12px;"/g,
-      'style="display: block; overflow: visible; max-height: none; margin-bottom: 12px;"'
+      /class="dark-img" style="display: none; overflow: hidden; max-height: 0px; margin-bottom: 12px;"/g,
+      'class="dark-img" style="display:none !important; height:0 !important; max-height:0 !important; margin:0 !important; padding:0 !important; overflow:hidden !important;"'
     );
     html = html.replace(
-      /style="display: block; border: 0;"/g,
-      'style="display: block; border: 0; max-width: 100%;"'
+      /class="dark-img" style="display: none; overflow: hidden; max-height: 0px;"/g,
+      'class="dark-img" style="display:none !important; height:0 !important; max-height:0 !important; margin:0 !important; padding:0 !important; overflow:hidden !important;"'
     );
   }
 
