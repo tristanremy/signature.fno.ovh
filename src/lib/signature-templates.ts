@@ -53,7 +53,7 @@ export const templates: Record<string, Template> = {
           : ''
       }
       ${
-        !data.logoUrl && data.company
+        data.company
           ? `<div style="color: ${data.textColor}; margin-bottom: 10px;" class="dark-text">${data.company}</div>`
           : ''
       }
@@ -88,14 +88,12 @@ export const templates: Record<string, Template> = {
     description: 'Bold design with adaptive gradient separator',
     generate: (data) => {
       let titleCompanyLine = '';
-      if (data.title && data.company && !data.logoUrl) {
+      if (data.title && data.company) {
         titleCompanyLine = `${data.title} · ${data.company}`;
-      } else if (data.title && !data.company) {
+      } else if (data.title) {
         titleCompanyLine = data.title;
-      } else if (!data.title && data.company && !data.logoUrl) {
+      } else if (data.company) {
         titleCompanyLine = data.company;
-      } else if (data.title && data.logoUrl) {
-        titleCompanyLine = data.title;
       }
 
       return `<!DOCTYPE html>
@@ -174,7 +172,7 @@ export const templates: Record<string, Template> = {
     generate: (data) => {
       let titleCompanyLine = [];
       if (data.title) titleCompanyLine.push(data.title);
-      if (!data.logoUrl && data.company) titleCompanyLine.push(data.company);
+      if (data.company) titleCompanyLine.push(data.company);
       const titleCompanyText =
         titleCompanyLine.length > 0 ? ` · ${titleCompanyLine.join(' · ')}` : '';
 
@@ -269,7 +267,7 @@ export const templates: Record<string, Template> = {
     generate: (data) => {
       let titleCompanyLine = [];
       if (data.title) titleCompanyLine.push(data.title);
-      if (!data.logoUrl && data.company) titleCompanyLine.push(data.company);
+      if (data.company) titleCompanyLine.push(data.company);
       const titleCompanyText =
         titleCompanyLine.length > 0 ? ` · ${titleCompanyLine.join(' · ')}` : '';
 
