@@ -125,7 +125,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="text-left md:text-center space-y-2 relative">
+        <div className="text-left md:text-center space-y-2 relative overflow-hidden">
           <Button
             variant="outline"
             size="sm"
@@ -135,10 +135,10 @@ export default function App() {
             <Languages className="h-4 w-4" />
             {language === 'en' ? 'EN' : 'FR'}
           </Button>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight pr-20">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight pr-20 break-words">
             {t('title')}
           </h1>
-          <p className="text-muted-foreground text-sm md:text-base">
+          <p className="text-muted-foreground text-sm md:text-base break-words">
             {t('subtitle')}
           </p>
         </div>
