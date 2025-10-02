@@ -36,9 +36,11 @@ export const templates: Record<string, Template> = {
     }
     [data-ogsc] .dark-text { color: ${data.textColorDark} !important; }
     [data-ogsc] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsb] .dark-text { color: ${data.textColorDark} !important; }
+    [data-ogsb] .dark-link { color: ${data.linkColorDark} !important; }
   </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 14px; color: ${
       data.textColor
     }; line-height: 1.5; border-collapse: collapse;">
@@ -115,9 +117,14 @@ export const templates: Record<string, Template> = {
     [data-ogsc] .gradient-line { background: linear-gradient(90deg, ${
       data.linkColorDark
     } 0%, transparent 100%) !important; }
+    [data-ogsb] .dark-text { color: ${data.textColorDark} !important; }
+    [data-ogsb] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsb] .gradient-line { background: linear-gradient(90deg, ${
+      data.linkColorDark
+    } 0%, transparent 100%) !important; }
   </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 <table role="presentation" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: ${
         data.textColor
       }; border-collapse: collapse;">
@@ -191,13 +198,19 @@ export const templates: Record<string, Template> = {
     }
     [data-ogsc] .dark-text { color: ${data.textColorDark} !important; }
     [data-ogsc] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsc] .dark-img { display: block !important; max-height: inherit !important; visibility: inherit !important; }
+    [data-ogsc] .light-img { display: none !important; }
+    [data-ogsb] .dark-text { color: ${data.textColorDark} !important; }
+    [data-ogsb] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsb] .dark-img { display: block !important; max-height: inherit !important; visibility: inherit !important; }
+    [data-ogsb] .light-img { display: none !important; }
     @media only screen and (max-width: 480px) {
       .mobile-stack { display: block !important; }
       .mobile-logo { margin-bottom: 12px !important; }
     }
   </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 13px; color: ${
         data.textColor
       }; border-collapse: collapse;">
@@ -286,12 +299,18 @@ export const templates: Record<string, Template> = {
     }
     [data-ogsc] .dark-text { color: ${data.textColorDark} !important; }
     [data-ogsc] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsc] .dark-img { display: block !important; max-height: inherit !important; visibility: inherit !important; }
+    [data-ogsc] .light-img { display: none !important; }
+    [data-ogsb] .dark-text { color: ${data.textColorDark} !important; }
+    [data-ogsb] .dark-link { color: ${data.linkColorDark} !important; }
+    [data-ogsb] .dark-img { display: block !important; max-height: inherit !important; visibility: inherit !important; }
+    [data-ogsb] .light-img { display: none !important; }
     @media only screen and (max-width: 480px) {
       .mobile-block { display: block !important; margin-bottom: 4px !important; }
     }
   </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 13px; color: ${
         data.textColor
       }; border-collapse: collapse;">
