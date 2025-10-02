@@ -6,7 +6,9 @@
       "Bash(pnpm install:*)",
       "Bash(pnpm dev:*)",
       "Bash(pnpm add:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm run dev:*)"
     ],
     "deny": [],
     "ask": []
