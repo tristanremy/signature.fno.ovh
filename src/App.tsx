@@ -235,6 +235,18 @@ export default function App() {
 
                 <div className="space-y-2">
                   <Label htmlFor="logoUrl">{t('logoLight')}</Label>
+                  {formData.logoUrl && (
+                    <div className="mb-2 p-3 border rounded-lg bg-white flex items-center justify-center min-h-[80px]">
+                      <img
+                        src={formData.logoUrl}
+                        alt="Logo preview"
+                        className="max-h-8 max-w-full object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                   <Input
                     id="logoUrl"
                     name="logoUrl"
@@ -246,6 +258,18 @@ export default function App() {
 
                 <div className="space-y-2">
                   <Label htmlFor="logoDarkUrl">{t('logoDark')}</Label>
+                  {formData.logoDarkUrl && (
+                    <div className="mb-2 p-3 border rounded-lg bg-gray-900 flex items-center justify-center min-h-[80px]">
+                      <img
+                        src={formData.logoDarkUrl}
+                        alt="Dark logo preview"
+                        className="max-h-8 max-w-full object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                   <Input
                     id="logoDarkUrl"
                     name="logoDarkUrl"
