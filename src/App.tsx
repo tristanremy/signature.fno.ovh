@@ -28,7 +28,7 @@ export default function App() {
   const [formData, setFormData] = useState<SignatureData>({
     name: 'Elodie Remy',
     title: '',
-    company: 'Gwarell',
+    company: '',
     email: 'contact@gwarell.fr',
     phone: '06 06 06 06 06',
     website: 'www.gwarell.fr',
