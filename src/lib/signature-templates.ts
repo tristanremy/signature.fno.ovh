@@ -36,14 +36,12 @@ export const templates: Record<string, Template> = {
     }
     [data-ogsc] .dark-text { color: ${data.textColorDark} !important; }
     [data-ogsc] .dark-link { color: ${data.linkColorDark} !important; }
-    [data-ogsb] .dark-text { color: ${data.textColorDark} !important; }
-    [data-ogsb] .dark-link { color: ${data.linkColorDark} !important; }
   </style>
 </head>
-<body style="margin: 0; padding: 0;">
+<body style="margin: 0; padding: 0; background-color: transparent;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 14px; color: ${
       data.textColor
-    }; line-height: 1.5; border-collapse: collapse;">
+    }; line-height: 1.5; border-collapse: collapse; background-color: transparent;">
   <tr>
     <td style="padding: 0;">
       <div style="font-weight: bold; font-size: 16px; margin-bottom: 4px; color: ${
@@ -124,10 +122,10 @@ export const templates: Record<string, Template> = {
     } 0%, transparent 100%) !important; }
   </style>
 </head>
-<body style="margin: 0; padding: 0;">
+<body style="margin: 0; padding: 0; background-color: transparent;">
 <table role="presentation" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: ${
         data.textColor
-      }; border-collapse: collapse;">
+      }; border-collapse: collapse; background-color: transparent;">
   <tr>
     <td style="padding: 0;">
       <div style="font-weight: 700; font-size: 18px; margin-bottom: 2px; letter-spacing: -0.5px; color: ${
@@ -210,10 +208,10 @@ export const templates: Record<string, Template> = {
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0;">
+<body style="margin: 0; padding: 0; background-color: transparent;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 13px; color: ${
         data.textColor
-      }; border-collapse: collapse;">
+      }; border-collapse: collapse; background-color: transparent;">
   <tr>
     ${
       data.logoUrl
@@ -310,10 +308,10 @@ export const templates: Record<string, Template> = {
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0;">
+<body style="margin: 0; padding: 0; background-color: transparent;">
 <table role="presentation" style="font-family: Arial, sans-serif; font-size: 13px; color: ${
         data.textColor
-      }; border-collapse: collapse;">
+      }; border-collapse: collapse; background-color: transparent;">
   <tr>
     <td style="padding: 0;">
       ${
