@@ -277,7 +277,7 @@ export default function App() {
                           name="textColor"
                           value={formData.textColor}
                           onChange={handleChange}
-                          className="w-12 h-9 rounded border cursor-pointer"
+                          className="w-9 h-9 rounded-sm border cursor-pointer p-1"
                         />
                         <Input
                           value={formData.textColor}
@@ -300,7 +300,7 @@ export default function App() {
                           name="linkColor"
                           value={formData.linkColor}
                           onChange={handleChange}
-                          className="w-12 h-9 rounded border cursor-pointer"
+                          className="w-9 h-9 rounded-sm border cursor-pointer p-1"
                         />
                         <Input
                           value={formData.linkColor}
@@ -323,7 +323,7 @@ export default function App() {
                           name="textColorDark"
                           value={formData.textColorDark}
                           onChange={handleChange}
-                          className="w-12 h-9 rounded border cursor-pointer"
+                          className="w-9 h-9 rounded-sm border cursor-pointer p-1"
                         />
                         <Input
                           value={formData.textColorDark}
@@ -349,7 +349,7 @@ export default function App() {
                           name="linkColorDark"
                           value={formData.linkColorDark}
                           onChange={handleChange}
-                          className="w-12 h-9 rounded border cursor-pointer"
+                          className="w-9 h-9 rounded-sm border cursor-pointer p-1"
                         />
                         <Input
                           value={formData.linkColorDark}

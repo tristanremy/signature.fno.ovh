@@ -6,4 +6,12 @@
   :root {
     --radius: 0.5rem;
   }
+
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 2px;
+  }
+
+  input[type="color"]::-moz-color-swatch {
+    border-radius: 2px;
+  }
 }
