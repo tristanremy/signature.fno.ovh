@@ -146,27 +146,9 @@ export default function App() {
         <div className="grid lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>{t('template')}</CardTitle>
+              <CardTitle>{t('information')}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 gap-2">
-                {Object.entries(templates).map(([key, template]) => (
-                  <button
-                    key={key}
-                    onClick={() => setSelectedTemplate(key)}
-                    className={`p-2 text-left rounded-lg border-2 transition-all ${
-                      selectedTemplate === key
-                        ? 'border-black bg-gray-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="font-medium text-xs">{t(template.name as any)}</div>
-                  </button>
-                ))}
-              </div>
-
-              <div className="border-t pt-6 space-y-4">
-                <h3 className="font-semibold">{t('information')}</h3>
+            <CardContent className="space-y-4">
 
                 <div className="space-y-2">
                   <Label htmlFor="name">{t('name')}</Label>
@@ -445,56 +427,75 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-              </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle>{t('preview')}</CardTitle>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setDarkMode(!darkMode)}
-                >
-                  {darkMode ? (
-                    <Sun className="h-4 w-4" />
-                  ) : (
-                    <Moon className="h-4 w-4" />
-                  )}
-                </Button>
-              </div>
+              <CardTitle>{t('template')}</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div
-                className={`border rounded-lg p-6 min-h-[200px] transition-colors ${
-                  darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'
-                }`}
-                dangerouslySetInnerHTML={{
-                  __html: generatePreviewHTML(
-                    selectedTemplate,
-                    formData,
-                    darkMode
-                  ),
-                }}
-              />
-
-              <div className="flex gap-2">
-                <Button onClick={copyAsRendered} className="flex-1">
-                  <Copy className="h-4 w-4" />
-                  {copiedPlain ? t('copied') : t('copy')}
-                </Button>
-                <Button onClick={copyToClipboard} variant="outline">
-                  <Copy className="h-4 w-4" />
-                  {copied ? t('copied') : t('html')}
-                </Button>
-                <Button onClick={downloadHTML} variant="outline">
-                  <Download className="h-4 w-4" />
-                </Button>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-2 gap-2">
+                {Object.entries(templates).map(([key, template]) => (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedTemplate(key)}
+                    className={`p-2 text-left rounded-lg border-2 transition-all ${
+                      selectedTemplate === key
+                        ? 'border-black bg-white'
+                        : 'border-gray-200 hover:border-gray-300 bg-white'
+                    }`}
+                  >
+                    <div className="font-medium text-xs">{t(template.name as any)}</div>
+                  </button>
+                ))}
               </div>
 
-              <p className="text-xs text-muted-foreground" dangerouslySetInnerHTML={{ __html: t('copyTip') }} />
+              <div className="border-t pt-6 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold">{t('preview')}</h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setDarkMode(!darkMode)}
+                  >
+                    {darkMode ? (
+                      <Sun className="h-4 w-4" />
+                    ) : (
+                      <Moon className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
+
+                <div
+                  className={`border rounded-lg p-6 min-h-[200px] transition-colors ${
+                    darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white'
+                  }`}
+                  dangerouslySetInnerHTML={{
+                    __html: generatePreviewHTML(
+                      selectedTemplate,
+                      formData,
+                      darkMode
+                    ),
+                  }}
+                />
+
+                <div className="flex gap-2">
+                  <Button onClick={copyAsRendered} className="flex-1">
+                    <Copy className="h-4 w-4" />
+                    {copiedPlain ? t('copied') : t('copy')}
+                  </Button>
+                  <Button onClick={copyToClipboard} variant="outline">
+                    <Copy className="h-4 w-4" />
+                    {copied ? t('copied') : t('html')}
+                  </Button>
+                  <Button onClick={downloadHTML} variant="outline">
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                <p className="text-xs text-muted-foreground" dangerouslySetInnerHTML={{ __html: t('copyTip') }} />
+              </div>
             </CardContent>
           </Card>
         </div>
