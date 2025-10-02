@@ -240,7 +240,8 @@ export default function App() {
                       <img
                         src={formData.logoUrl}
                         alt="Logo preview"
-                        className="max-h-8 max-w-full object-contain"
+                        width="90"
+                        style={{ height: 'auto', maxWidth: '100%' }}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                         }}
@@ -263,7 +264,8 @@ export default function App() {
                       <img
                         src={formData.logoDarkUrl}
                         alt="Dark logo preview"
-                        className="max-h-8 max-w-full object-contain"
+                        width="90"
+                        style={{ height: 'auto', maxWidth: '100%' }}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                         }}
