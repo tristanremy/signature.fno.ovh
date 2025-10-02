@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Copy, Download, Moon, Sun } from 'lucide-react';
+import { Copy, Download, Moon, Sun, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -10,8 +10,16 @@ import {
   getContrastRatio,
   type SignatureData,
 } from '@/lib/signature-templates';
+import { useTranslation, type Language } from '@/lib/i18n';
+
+const getBrowserLanguage = (): Language => {
+  const browserLang = navigator.language.toLowerCase();
+  return browserLang.startsWith('fr') ? 'fr' : 'en';
+};
 
 export default function App() {
+  const [language, setLanguage] = useState<Language>(getBrowserLanguage());
+  const { t } = useTranslation(language);
   const [selectedTemplate, setSelectedTemplate] = useState('compactVertical');
   const [darkMode, setDarkMode] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -110,22 +118,35 @@ export default function App() {
   const textContrastDark = getContrastRatio(formData.textColorDark, '#1a1a1a');
   const linkContrastDark = getContrastRatio(formData.linkColorDark, '#1a1a1a');
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'fr' : 'en');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Email Signature Builder
+        <div className="text-left md:text-center space-y-2 relative">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleLanguage}
+            className="absolute right-0 top-0 flex items-center gap-2 z-10"
+          >
+            <Languages className="h-4 w-4" />
+            {language === 'en' ? 'FR' : 'EN'}
+          </Button>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight pr-20">
+            {t('title')}
           </h1>
-          <p className="text-muted-foreground">
-            Create professional email signatures with dark mode support
+          <p className="text-muted-foreground text-sm md:text-base">
+            {t('subtitle')}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Template</CardTitle>
+              <CardTitle>{t('template')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-2 gap-2">
@@ -139,16 +160,16 @@ export default function App() {
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    <div className="font-medium text-xs">{template.name}</div>
+                    <div className="font-medium text-xs">{t(template.name as any)}</div>
                   </button>
                 ))}
               </div>
 
               <div className="border-t pt-6 space-y-4">
-                <h3 className="font-semibold">Information</h3>
+                <h3 className="font-semibold">{t('information')}</h3>
 
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t('name')}</Label>
                   <Input
                     id="name"
                     name="name"
@@ -159,7 +180,7 @@ export default function App() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="title">{t('title_field')}</Label>
                     <Input
                       id="title"
                       name="title"
@@ -169,7 +190,7 @@ export default function App() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="company">Company</Label>
+                    <Label htmlFor="company">{t('company')}</Label>
                     <Input
                       id="company"
                       name="company"
@@ -180,7 +201,7 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('email')}</Label>
                   <Input
                     id="email"
                     name="email"
@@ -192,7 +213,7 @@ export default function App() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone</Label>
+                    <Label htmlFor="phone">{t('phone')}</Label>
                     <Input
                       id="phone"
                       name="phone"
@@ -202,7 +223,7 @@ export default function App() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="website">Website</Label>
+                    <Label htmlFor="website">{t('website')}</Label>
                     <Input
                       id="website"
                       name="website"
@@ -213,7 +234,7 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="logoUrl">Logo URL (Light)</Label>
+                  <Label htmlFor="logoUrl">{t('logoLight')}</Label>
                   <Input
                     id="logoUrl"
                     name="logoUrl"
@@ -224,7 +245,7 @@ export default function App() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="logoDarkUrl">Logo URL (Dark)</Label>
+                  <Label htmlFor="logoDarkUrl">{t('logoDark')}</Label>
                   <Input
                     id="logoDarkUrl"
                     name="logoDarkUrl"
@@ -235,11 +256,11 @@ export default function App() {
                 </div>
 
                 <div className="pt-4 border-t space-y-4">
-                  <Label>Colors</Label>
+                  <Label>{t('colors')}</Label>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="textColor" className="text-xs">
-                        Text
+                        {t('text')}
                       </Label>
                       <div className="flex gap-2">
                         <input
@@ -262,7 +283,7 @@ export default function App() {
 
                     <div className="space-y-2">
                       <Label htmlFor="linkColor" className="text-xs">
-                        Link
+                        {t('link')}
                       </Label>
                       <div className="flex gap-2">
                         <input
@@ -285,7 +306,7 @@ export default function App() {
 
                     <div className="space-y-2">
                       <Label htmlFor="textColorDark" className="text-xs">
-                        Text (Dark)
+                        {t('textDark')}
                       </Label>
                       <div className="flex gap-2">
                         <input
@@ -311,7 +332,7 @@ export default function App() {
 
                     <div className="space-y-2">
                       <Label htmlFor="linkColorDark" className="text-xs">
-                        Link (Dark)
+                        {t('linkDark')}
                       </Label>
                       <div className="flex gap-2">
                         <input
@@ -338,9 +359,9 @@ export default function App() {
 
                   <div className="grid grid-cols-2 gap-4 pt-2 text-xs">
                     <div className="space-y-1">
-                      <div className="font-medium mb-1">Light Mode</div>
+                      <div className="font-medium mb-1">{t('lightMode')}</div>
                       <div className="flex justify-between">
-                        <span>Text:</span>
+                        <span>{t('text')}:</span>
                         <span
                           className={
                             textContrastLight >= 4.5
@@ -353,7 +374,7 @@ export default function App() {
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Link:</span>
+                        <span>{t('link')}:</span>
                         <span
                           className={
                             linkContrastLight >= 4.5
@@ -368,9 +389,9 @@ export default function App() {
                     </div>
 
                     <div className="space-y-1">
-                      <div className="font-medium mb-1">Dark Mode</div>
+                      <div className="font-medium mb-1">{t('darkMode')}</div>
                       <div className="flex justify-between">
-                        <span>Text:</span>
+                        <span>{t('text')}:</span>
                         <span
                           className={
                             textContrastDark >= 4.5
@@ -383,7 +404,7 @@ export default function App() {
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Link:</span>
+                        <span>{t('link')}:</span>
                         <span
                           className={
                             linkContrastDark >= 4.5
@@ -405,7 +426,7 @@ export default function App() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle>Preview</CardTitle>
+                <CardTitle>{t('preview')}</CardTitle>
                 <Button
                   variant="outline"
                   size="sm"
@@ -436,21 +457,18 @@ export default function App() {
               <div className="flex gap-2">
                 <Button onClick={copyAsRendered} className="flex-1">
                   <Copy className="h-4 w-4" />
-                  {copiedPlain ? 'Copied!' : 'Copy'}
+                  {copiedPlain ? t('copied') : t('copy')}
                 </Button>
                 <Button onClick={copyToClipboard} variant="outline">
                   <Copy className="h-4 w-4" />
-                  {copied ? 'Copied!' : 'HTML'}
+                  {copied ? t('copied') : t('html')}
                 </Button>
                 <Button onClick={downloadHTML} variant="outline">
                   <Download className="h-4 w-4" />
                 </Button>
               </div>
 
-              <p className="text-xs text-muted-foreground">
-                Use <strong>Copy</strong> to paste directly into email clients,
-                or <strong>HTML</strong> for raw code.
-              </p>
+              <p className="text-xs text-muted-foreground" dangerouslySetInnerHTML={{ __html: t('copyTip') }} />
             </CardContent>
           </Card>
         </div>
