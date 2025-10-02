@@ -160,7 +160,7 @@ export default function App() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="title">{t('title_field')}</Label>
                     <Input
@@ -193,7 +193,7 @@ export default function App() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="phone">{t('phone')}</Label>
                     <Input
@@ -265,7 +265,7 @@ export default function App() {
 
                 <div className="pt-4 border-t space-y-4">
                   <Label>{t('colors')}</Label>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="textColor" className="text-xs">
                         {t('text')}
