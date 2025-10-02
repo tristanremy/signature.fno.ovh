@@ -12,14 +12,12 @@ import type { TFunction } from '@/lib/i18n';
 interface PreviewPanelProps {
   selectedTemplate: string;
   formData: SignatureData;
-  onTemplateChange: (template: string) => void;
   t: TFunction;
 }
 
 export function PreviewPanel({
   selectedTemplate,
   formData,
-  onTemplateChange,
   t,
 }: PreviewPanelProps) {
   const [previewDarkMode, setPreviewDarkMode] = useState(false);

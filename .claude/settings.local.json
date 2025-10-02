@@ -9,7 +9,10 @@
       "Bash(pnpm build:*)",
       "Bash(pnpm remove:*)",
       "Bash(pnpm run dev:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(pnpm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

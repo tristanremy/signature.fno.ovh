@@ -15,7 +15,7 @@ const getBrowserLanguage = (): Language => {
 export default function App() {
   const [language, setLanguage] = useState<Language>(getBrowserLanguage());
   const { t } = useTranslation(language);
-  const [selectedTemplate, setSelectedTemplate] = useState('compactVertical');
+  const selectedTemplate = 'compactVertical';
   const { formData, updateField, handleInputChange } = useSignatureForm();
   useBrowserTheme(); // Apply browser theme
 
@@ -57,7 +57,6 @@ export default function App() {
           <PreviewPanel
             selectedTemplate={selectedTemplate}
             formData={formData}
-            onTemplateChange={setSelectedTemplate}
             t={t}
           />
         </div>
