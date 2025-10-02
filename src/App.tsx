@@ -123,7 +123,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
+    <div className="min-h-screen bg-white p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="text-left md:text-center space-y-2 relative">
           <Button
@@ -133,7 +133,7 @@ export default function App() {
             className="absolute right-0 top-0 flex items-center gap-2 z-10"
           >
             <Languages className="h-4 w-4" />
-            {language === 'en' ? 'FR' : 'EN'}
+            {language === 'en' ? 'EN' : 'FR'}
           </Button>
           <h1 className="text-2xl md:text-3xl font-bold tracking-tight pr-20">
             {t('title')}
