@@ -395,9 +395,45 @@ export function generatePreviewHTML(
 ): string {
   let html = templates[template].generate(data);
 
-  // Remove all @media (prefers-color-scheme: dark) rules to prevent browser dark mode from affecting preview
+  // Remove all CSS rules that could interfere with preview mode
   html = html.replace(
     /@media \(prefers-color-scheme: dark\) \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsc\] \.dark-text \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsc\] \.dark-link \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsc\] \.dark-img \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsc\] \.light-img \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsb\] \.dark-text \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsb\] \.dark-link \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsb\] \.dark-img \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsb\] \.light-img \{[^}]*\}/g,
+    ''
+  );
+  html = html.replace(
+    /\[data-ogsb\] \.gradient-line \{[^}]*\}/g,
     ''
   );
 
@@ -437,7 +473,7 @@ export function generatePreviewHTML(
       'class="dark-img" style="display: block; overflow: visible; max-height: none;"'
     );
   } else {
-    // Force light mode - show light images, completely hide dark image containers
+    // Force light mode - show light images, completely hide dark image containers, remove dark classes
     html = html.replace(
       /<img class="light-img" src="[^"]*" alt="[^"]*" width="\d+" style="display: block; margin-bottom: 12px; border: 0; max-width: \d+px; height: auto;">/g,
       (match) => match.replace(/style="[^"]*"/, 'style="display: block !important; margin-bottom: 12px; border: 0; max-width: 90px; height: auto;"')
@@ -450,6 +486,10 @@ export function generatePreviewHTML(
       /class="dark-img" style="display: none; overflow: hidden; max-height: 0px;"/g,
       'class="dark-img" style="display:none !important; height:0 !important; max-height:0 !important; margin:0 !important; padding:0 !important; overflow:hidden !important;"'
     );
+    // Remove dark-link and dark-text classes to prevent CSS from overriding inline styles
+    html = html.replace(/class="dark-link mobile-block"/g, 'class="mobile-block"');
+    html = html.replace(/class="dark-link"/g, '');
+    html = html.replace(/class="dark-text"/g, '');
   }
 
   return html;
